@@ -1,0 +1,76 @@
+parameters:
+    
+    
+    task_type: "classification"
+
+    # Defines the type of task being evaluated. The selected task type impacts the metrics and logic applied during evaluation.
+    # Possible options:
+    # - "classification": For tasks such as binary or multi-class classification.
+    # - "regression": For tasks that predict continuous values.
+
+time_based_analysis_paramters:
+
+    activate_analysis: True
+    # Boolean flag to activate or deactivate time-based analysis.
+    # Set to `True` to enable evaluations that consider temporal trends in the data.
+
+    timestamp_column: "Timestamp"
+
+    # The name of the column containing timestamp information in the dataset. 
+    # This column will be used to perform time-based segmentations.
+
+    number_of_months: 4
+
+    # Specifies the time interval (in months) to use for the time-based analysis.
+    # Examples:
+    # - Use `3` for quarterly analysis.
+    # - Use `12` for annual analysis.
+
+non_time_based_analysis_paramters: 
+
+    activate_analysis: True
+
+    # Boolean flag to enable or disable non-time-based segmentation analysis.
+    # Set to `True` to include evaluations based on subcategories defined in the dataset.
+
+    subcategory_threshold: 10
+    # The maximum number of subcategories to process during non-time-based segmentation analysis.
+    # If the number of subcategories exceeds this threshold, optimizations or exclusions may be applied.
+
+    segmentation_column: "Gender"  # need to investigate what happens if we have more then threshold  subcategores
+
+    # The column name used for segmentation in non-time-based analysis.
+    # Examples:
+    # - Use "Gender" for gender-based segmentation.
+    # - Use other categorical columns as needed for task-specific segmentation.
+
+
+model_selection_parameters:
+  # Regression metric weights
+  reg_mae_weight: 0.2
+  reg_mse_weight: 0.2
+  reg_rmse_weight: 0.2
+  reg_r2_weight: 0.3
+  reg_explained_variance_weight: 0.1
+
+  # Classification metric weights
+  clf_precision_weight: 0.15
+  clf_recall_weight: 0.15
+  clf_accuracy_weight: 0.1
+  clf_auc_weight: 0.15
+  clf_f1_weight: 0.15
+  clf_phi_weight: 0.1
+  clf_fpr_weight: 0.1
+  clf_fnr_weight: 0.1
+
+display_settings:
+
+    side_bar_title: "ML Evaluation Framework"
+
+    # The title displayed in the sidebar of the evaluation interface.
+    # Customize this title to reflect the organization or framework's branding.
+
+    side_bar_logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBv8lPPqw_8NVRq01U8UhNguSO-Z6gdTlJjA&s"
+
+    # The URL of the logo to be displayed in the sidebar of the evaluation interface.
+    # Ensure the URL is accessible and points to a valid image file to avoid display errors.

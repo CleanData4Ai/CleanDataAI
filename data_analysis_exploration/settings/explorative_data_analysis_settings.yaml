@@ -1,0 +1,167 @@
+# Configuration settings for exploratory data analysis (EDA) using predefined functions.
+# This section allows for the customization of various EDA functions to analyze and understand the dataset effectively.
+functions:
+
+  # Default settings for exploratory data analysis functions.
+  defaultExploratoryDataAnalysis:
+    
+    # Determines whether a comprehensive report (e.g., ydata profiling) should be generated.
+    # Setting this to "True" enables the generation of a thorough report that captures essential insights 
+    # about the dataset, including data types, distributions, and potential issues, making it a valuable 
+    # resource for initial data exploration and understanding.
+    Project Overview and Key Information: True
+    
+    # Generates a high-level summary of the dataset including metadata.
+    # This summary provides an overview of the dataset, including its structure and key attributes, 
+    # serving as an essential reference for understanding the data context.
+    Dataset Summary Overview: True
+    
+    # Conducts an initial inspection of the data to assess sample size, features, duplicates, missing values, etc.
+    # This step is crucial for understanding the quality of the data, revealing potential issues early on, 
+    # and informing subsequent analysis steps. Setting this to True ensures this initial review is performed.
+    Initial Data Inspection: True
+    
+    # Provides a detailed summary of the features including types and non-null counts.
+    # This summary highlights the data types of each feature and the counts of non-null entries, 
+    # helping to identify any discrepancies or areas that require further attention during preprocessing.
+    Feature Info Summary: True
+    
+    # Summarizes the number of unique values for each feature.
+    # Understanding the uniqueness of feature values aids in determining the potential need for encoding 
+    # or additional preprocessing steps, particularly for categorical variables.
+    Unique Values Summary: True
+    
+    # Produces a summary of missing values in the dataset.
+    # This analysis helps identify which features have missing data and the extent of the missingness, 
+    # which is critical for deciding on appropriate imputation or cleaning strategies.
+    Missing Values Summary: True
+    
+    # Analyzes and reports on the number of zero values in numerical columns.
+    # This summary helps in identifying features with zero values, which may indicate issues or special cases 
+    # that need to be accounted for in subsequent analyses.
+    Zero Values Summary: True
+    
+    # Provides summary statistics for numerical features, including mean, variance, and visualizations.
+    # Generating these statistics is vital for understanding the distribution and characteristics of numerical data,
+    # enabling effective feature engineering and model building.
+    Numerical Feature Summary: True
+    
+    # Analyzes the distribution of categorical features and generates a summary report.
+    # This analysis helps to understand the frequency of each category within the features, 
+    # which is crucial for assessing categorical data and planning encoding strategies.
+    Categorical Feature Summary: True
+    
+    # Visualizes the distribution of the target feature, offering insights into its spread and behavior.
+    # Understanding the distribution of the target variable is essential for model selection and evaluation, 
+    # as it influences the choice of metrics and modeling strategies.
+    Target Feature Distribution: True
+    
+    # Creates density plots for numerical features to visualize their distribution.
+    # Density plots provide a smoothed representation of the distribution of numerical features, 
+    # which is useful for identifying patterns and anomalies within the data.
+    Density Plot: True
+    
+    # Conducts correlation analysis between numerical features, identifying potential relationships.
+    # Correlation analysis helps to uncover linear relationships between numerical features, 
+    # which can inform feature selection and engineering in predictive modeling.
+    Numerical Feature Correlation Analysis: True
+    
+    # Conducts correlation analysis for categorical features, assessing relationships between categories.
+    # This analysis aids in understanding how categorical features relate to each other, 
+    # which is important for identifying multicollinearity and for planning encoding methods.
+    Correlation Analysis of Categorical Features: False
+ 
+    # Provides target feature analysis segmented by month. (Disabled by default)
+    # When enabled, this analysis allows for understanding how the target feature behaves over time, 
+    # segmented monthly, which can reveal trends and seasonal patterns.
+    Target Analysis by Month: False
+
+    # Visualizes the target feature on a weekly basis. (Disabled by default)
+    # This provides insights into the weekly behavior of the target variable, 
+    # which can be particularly useful for time-sensitive data or seasonal analysis.
+    Target Feature Visualization by Week: False
+
+    # Performs numerical time series analysis, aggregated by month. (Disabled by default)
+    # This analysis allows for examining trends and patterns in numerical features over time, 
+    # aggregated by month, which is critical for time series forecasting and analysis.
+    Numerical Time Series Analysis by Month: False
+     
+    # Performs numerical time series analysis, aggregated by week. (Disabled by default)
+    # Similar to monthly analysis, this provides a more granular view of numerical trends and behaviors over time.
+    Numerical Time Series Analysis by Week: False
+
+    # Conducts categorical time series analysis, aggregated by month. (Disabled by default)
+    # This analysis is essential for understanding how categorical features change over time, 
+    # segmented by month, which can inform seasonal strategies and marketing efforts.
+    Categorical Time Series Analysis by Month: False
+
+    # Conducts categorical time series analysis, aggregated by week. (Disabled by default)
+    # This provides a detailed look at weekly changes in categorical data, 
+    # which can be useful for detecting trends and fluctuations in user behavior or product performance.
+    Categorical Time Series Analysis by Week: False
+
+  # Configuration for specific types of analysis. These settings allow customization of certain parameters used in analyses.
+  analysisParameters: 
+    
+    # Specifies the features to include for numerical feature distribution analysis. 
+    # If "None", all numerical features will be included. Example usage: ["feature1", "feature2"]
+    numericalFeatureDistribution:
+      featuresToInclude: None
+
+    # Specifies the features to include for categorical feature distribution analysis. 
+    # If "None", all categorical features will be included. Example usage: ["feature1", "feature2"]
+    categoricalFeatureDistribution:
+      featuresToInclude: None
+      categorical_feature_threshold: 35
+
+    # Specifies the features to include for kernel density estimate plots. 
+    # If "None", all numerical features will be included. Example usage: ["feature1", "feature2"]
+    kernelDensityEstimatePlots:
+      featuresToInclude: None   
+
+    # Specifies the features to include for variance analysis. 
+    # If "None", all numerical features will be included. Example usage: ["feature1", "feature2"]
+    varianceAnalysis: 
+      featuresToInclude: None  
+    
+
+    # Configuration for correlation analysis settings, which evaluates relationships between features.
+    Correlation_Analysis:
+      
+      apply_variance_threshold: True 
+      # Defines a variance threshold for filtering features before conducting correlation analysis.
+      variance_threshold: 0.0 # This threshold helps to exclude features with low variance that may not contribute meaningful correlations.
+      
+      # Specifies the correlation metric to be used for analysis.
+      # Supports different correlation methods: 'pearson' (for linear relationships), 'kendall', or 'spearman' (for non-parametric correlations).
+      correlation_metric: 'pearson'  
+
+    # Configuration for time series analysis, controlling the number of months or weeks to consider, and the number of top subcategories to include.
+    time_series_analysis:
+
+
+      numerical_featuresToInclude: None   # example ["feature" , "feature2" ]
+
+      categorcial_featuresToInclude: None  # example ["feature" , "feature2" ]
+
+      # If set to 0, all available months in the dataset will be considered for monthly analysis.
+      # This flexibility allows users to focus on specific time frames or trends as needed.
+      num_months: 0  
+      
+      # If set to 0, all available weeks in the dataset will be considered for weekly analysis.
+      # This enables detailed week-by-week insights into the data trends and behaviors.
+      num_weeks:  0  
+      
+      # Specifies the number of top subcategories to include in the time series analysis (e.g., top 3).
+      # This setting helps to narrow down the analysis to the most relevant categories, 
+      # which can improve clarity and focus in reporting.
+      top_n_subcategories: 3
+
+# Display settings for the analysis interface.
+display_settings:
+
+  # Title displayed in the sidebar of the analysis framework interface.
+  side_bar_title: "Explorative Data Analysis Framework"  # add  here the name of the sidebar
+
+  # URL for the logo displayed in the sidebar, enhancing the branding and visual identity of the analysis tool.
+  side_bar_logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBv8lPPqw_8NVRq01U8UhNguSO-Z6gdTlJjA&s"

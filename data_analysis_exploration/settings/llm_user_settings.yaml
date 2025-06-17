@@ -1,0 +1,13 @@
+use_open_source: False  # Set to True to utilize open-source LLMs via platforms like Groq; when set to False, the system defaults to using proprietary models such as those provided by OpenAI.
+
+llm_settings:
+
+  open_api_token: "provide a valid api token"  # Enter a valid OpenAI API token to enable access to OpenAI's LLM services for tasks such as text generation, classification, and recommendations.
+
+  model_name: 'provide llm model name'  # Specify one or more OpenAI model identifiers (e.g., "gpt-4", "gpt-3.5-turbo") to define which LLMs should be used for inference. This supports fine-tuned control over performance and cost.
+
+opensource_llm:
+
+  groq_api_token: ""  # Provide a valid API token to enable access to Groq's open-source model serving infrastructure. Required only when use_open_source is set to True.
+
+  groq_model_name: ''  # Specify the name of the open-source model to be used through Groq (e.g., "meta-llama/llama-4-scout-17b-16e-instruct"). The model choice affects both performance and response quality.
